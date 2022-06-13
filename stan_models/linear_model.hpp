@@ -8,24 +8,28 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 17> locations_array__ = 
+static constexpr std::array<const char*, 21> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 11, column 4 to column 15)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 12, column 4 to column 14)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 13, column 4 to column 27)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 24, column 2 to column 57)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 17, column 4 to column 42)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 18, column 4 to column 24)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 19, column 4 to column 30)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 20, column 4 to column 40)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 2, column 4 to column 22)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 3, column 12 to column 13)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 3, column 4 to column 17)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 4, column 12 to column 13)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 4, column 4 to column 17)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 5, column 4 to column 15)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 6, column 4 to column 18)",
- " (in 'C:/Users/solar/Desktop/Studia/DataAnalysisProject/stan_models/linear_model.stan', line 7, column 4 to column 21)"};
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 8, column 4 to column 15)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 9, column 4 to column 14)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 10, column 4 to column 12)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 11, column 4 to column 27)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 20, column 4 to column 22)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 22, column 8 to column 49)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 21, column 17 to line 23, column 5)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 21, column 4 to line 23, column 5)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 24, column 4 to column 60)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 14, column 4 to column 25)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 15, column 4 to column 24)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 16, column 4 to column 27)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 17, column 4 to column 40)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 2, column 4 to column 22)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 3, column 12 to column 13)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 3, column 4 to column 17)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 4, column 12 to column 13)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 4, column 4 to column 17)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 5, column 4 to column 15)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 20, column 11 to column 12)"};
 
 
 
@@ -36,9 +40,7 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
   int N;
   Eigen::Matrix<double, -1, 1> y__;
   Eigen::Matrix<double, -1, 1> x__;
-  int x_pred;
-  double prior_mu;
-  double prior_sigma; 
+  int x_pred; 
   Eigen::Map<Eigen::Matrix<double, -1, 1>> y{nullptr, 0};
   Eigen::Map<Eigen::Matrix<double, -1, 1>> x{nullptr, 0};
  
@@ -67,19 +69,19 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 9;
+      current_statement__ = 14;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 9;
+      current_statement__ = 14;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 9;
+      current_statement__ = 14;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 10;
+      current_statement__ = 15;
       stan::math::validate_non_negative_index("y", "N", N);
-      current_statement__ = 11;
+      current_statement__ = 16;
       context__.validate_dims("data initialization","y","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       y__ = 
@@ -89,22 +91,22 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       
       {
         std::vector<local_scalar_t__> y_flat__;
-        current_statement__ = 11;
+        current_statement__ = 16;
         y_flat__ = context__.vals_r("y");
-        current_statement__ = 11;
+        current_statement__ = 16;
         pos__ = 1;
-        current_statement__ = 11;
+        current_statement__ = 16;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 11;
+          current_statement__ = 16;
           stan::model::assign(y, y_flat__[(pos__ - 1)],
             "assigning variable y", stan::model::index_uni(sym1__));
-          current_statement__ = 11;
+          current_statement__ = 16;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 12;
+      current_statement__ = 17;
       stan::math::validate_non_negative_index("x", "N", N);
-      current_statement__ = 13;
+      current_statement__ = 18;
       context__.validate_dims("data initialization","x","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       x__ = 
@@ -114,47 +116,33 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       
       {
         std::vector<local_scalar_t__> x_flat__;
-        current_statement__ = 13;
+        current_statement__ = 18;
         x_flat__ = context__.vals_r("x");
-        current_statement__ = 13;
+        current_statement__ = 18;
         pos__ = 1;
-        current_statement__ = 13;
+        current_statement__ = 18;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 13;
+          current_statement__ = 18;
           stan::model::assign(x, x_flat__[(pos__ - 1)],
             "assigning variable x", stan::model::index_uni(sym1__));
-          current_statement__ = 13;
+          current_statement__ = 18;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 14;
+      current_statement__ = 19;
       context__.validate_dims("data initialization","x_pred","int",
            std::vector<size_t>{});
       x_pred = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 14;
+      current_statement__ = 19;
       x_pred = context__.vals_i("x_pred")[(1 - 1)];
-      current_statement__ = 15;
-      context__.validate_dims("data initialization","prior_mu","double",
-           std::vector<size_t>{});
-      prior_mu = std::numeric_limits<double>::quiet_NaN();
-      
-      
-      current_statement__ = 15;
-      prior_mu = context__.vals_r("prior_mu")[(1 - 1)];
-      current_statement__ = 16;
-      context__.validate_dims("data initialization","prior_sigma","double",
-           std::vector<size_t>{});
-      prior_sigma = std::numeric_limits<double>::quiet_NaN();
-      
-      
-      current_statement__ = 16;
-      prior_sigma = context__.vals_r("prior_sigma")[(1 - 1)];
+      current_statement__ = 20;
+      stan::math::validate_non_negative_index("log_lik", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
-    num_params_r__ = 1 + 1 + 1;
+    num_params_r__ = 1 + 1 + 1 + 1;
     
   }
   
@@ -182,19 +170,21 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       local_scalar_t__ beta = DUMMY_VAR__;
       current_statement__ = 2;
       beta = in__.template read<local_scalar_t__>();
-      local_scalar_t__ sigma = DUMMY_VAR__;
+      local_scalar_t__ mu = DUMMY_VAR__;
       current_statement__ = 3;
+      mu = in__.template read<local_scalar_t__>();
+      local_scalar_t__ sigma = DUMMY_VAR__;
+      current_statement__ = 4;
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       {
-        current_statement__ = 5;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(alpha, prior_mu, prior_sigma));
-        current_statement__ = 6;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 0, 3));
-        current_statement__ = 7;
-        lp_accum__.add(stan::math::exponential_lpdf<propto__>(sigma, 0.01));
-        current_statement__ = 8;
+        current_statement__ = 10;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0, 10));
+        current_statement__ = 11;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 0, 10));
+        current_statement__ = 12;
+        lp_accum__.add(stan::math::exponential_lpdf<propto__>(sigma, 1));
+        current_statement__ = 13;
         lp_accum__.add(
           stan::math::normal_lpdf<propto__>(y,
             stan::math::add(alpha, stan::math::multiply(beta, x)), sigma));
@@ -237,12 +227,16 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
       beta = in__.template read<local_scalar_t__>();
-      double sigma = std::numeric_limits<double>::quiet_NaN();
+      double mu = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
+      mu = in__.template read<local_scalar_t__>();
+      double sigma = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 4;
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       out__.write(alpha);
       out__.write(beta);
+      out__.write(mu);
       out__.write(sigma);
       if (stan::math::logical_negation((stan::math::primitive_value(
             emit_transformed_parameters__) || stan::math::primitive_value(
@@ -252,10 +246,22 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
+      Eigen::Matrix<double, -1, 1> log_lik =
+         Eigen::Matrix<double, -1, 1>::Constant(N,
+           std::numeric_limits<double>::quiet_NaN());
+      current_statement__ = 8;
+      for (int i = 1; i <= N; ++i) {
+        current_statement__ = 6;
+        stan::model::assign(log_lik,
+          stan::math::normal_lpdf<false>(
+            stan::model::rvalue(y, "y", stan::model::index_uni(i)), mu,
+            sigma), "assigning variable log_lik", stan::model::index_uni(i));
+      }
       double y_pred = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 4;
+      current_statement__ = 9;
       y_pred = stan::math::normal_rng((alpha + (beta * x_pred)), sigma,
                  base_rng__);
+      out__.write(log_lik);
       out__.write(y_pred);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -283,6 +289,9 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
       local_scalar_t__ beta = DUMMY_VAR__;
       beta = in__.read<local_scalar_t__>();
       out__.write(beta);
+      local_scalar_t__ mu = DUMMY_VAR__;
+      mu = in__.read<local_scalar_t__>();
+      out__.write(mu);
       local_scalar_t__ sigma = DUMMY_VAR__;
       sigma = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, sigma);
@@ -293,7 +302,8 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"alpha", "beta", "sigma", "y_pred"};
+    names__ = std::vector<std::string>{"alpha", "beta", "mu", "sigma",
+      "log_lik", "y_pred"};
     
     } // get_param_names() 
     
@@ -301,6 +311,7 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{static_cast<size_t>(N)}, std::vector<size_t>{
       }};
     
     } // get_dims() 
@@ -313,12 +324,18 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     
     param_names__.emplace_back(std::string() + "alpha");
     param_names__.emplace_back(std::string() + "beta");
+    param_names__.emplace_back(std::string() + "mu");
     param_names__.emplace_back(std::string() + "sigma");
     if (emit_transformed_parameters__) {
       
     }
     
     if (emit_generated_quantities__) {
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
+        } 
+      }
       param_names__.emplace_back(std::string() + "y_pred");
     }
     
@@ -332,12 +349,18 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     
     param_names__.emplace_back(std::string() + "alpha");
     param_names__.emplace_back(std::string() + "beta");
+    param_names__.emplace_back(std::string() + "mu");
     param_names__.emplace_back(std::string() + "sigma");
     if (emit_transformed_parameters__) {
       
     }
     
     if (emit_generated_quantities__) {
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
+        } 
+      }
       param_names__.emplace_back(std::string() + "y_pred");
     }
     
@@ -345,13 +368,13 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -365,9 +388,10 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
                             const bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
       const size_t num_params__ = 
-  ((1 + 1) + 1);
+  (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = 1;
+      const size_t num_gen_quantities = 
+  (N + 1);
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -386,9 +410,10 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
                             bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
       const size_t num_params__ = 
-  ((1 + 1) + 1);
+  (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = 1;
+      const size_t num_gen_quantities = 
+  (N + 1);
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));
@@ -424,8 +449,9 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
                               std::vector<int>& params_i,
                               std::vector<double>& vars,
                               std::ostream* pstream__ = nullptr) const {
-     constexpr std::array<const char*, 3> names__{"alpha", "beta", "sigma"};
-      const std::array<Eigen::Index, 3> constrain_param_sizes__{1, 1, 1};
+     constexpr std::array<const char*, 4> names__{"alpha", "beta", "mu",
+      "sigma"};
+      const std::array<Eigen::Index, 4> constrain_param_sizes__{1, 1, 1, 1};
       const auto num_constrained_params__ = std::accumulate(
         constrain_param_sizes__.begin(), constrain_param_sizes__.end(), 0);
     
