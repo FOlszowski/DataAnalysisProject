@@ -19,8 +19,8 @@ static constexpr std::array<const char*, 21> locations_array__ =
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 21, column 17 to line 23, column 5)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 21, column 4 to line 23, column 5)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 24, column 4 to column 60)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 14, column 4 to column 25)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 15, column 4 to column 24)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 14, column 4 to column 31)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 15, column 4 to column 26)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 16, column 4 to column 27)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 17, column 4 to column 40)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/linear_model.stan', line 2, column 4 to column 22)",
@@ -179,9 +179,9 @@ class linear_model_model final : public model_base_crtp<linear_model_model> {
                 0, lp__);
       {
         current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0, 10));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 1600, 1500));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 0, 10));
+        lp_accum__.add(stan::math::lognormal_lpdf<propto__>(beta, 0, 1));
         current_statement__ = 12;
         lp_accum__.add(stan::math::exponential_lpdf<propto__>(sigma, 1));
         current_statement__ = 13;

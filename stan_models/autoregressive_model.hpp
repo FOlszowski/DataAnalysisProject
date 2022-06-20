@@ -19,8 +19,8 @@ static constexpr std::array<const char*, 20> locations_array__ =
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 22, column 15 to line 24, column 3)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 22, column 2 to line 24, column 3)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 25, column 2 to column 55)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 13, column 2 to column 23)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 14, column 2 to column 22)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 13, column 2 to column 29)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 14, column 2 to column 24)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 15, column 2 to column 25)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 17, column 4 to column 48)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 16, column 16 to line 18, column 3)",
@@ -142,9 +142,9 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
                 0, lp__);
       {
         current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0, 10));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 1600, 1500));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 0, 10));
+        lp_accum__.add(stan::math::lognormal_lpdf<propto__>(beta, 0, 1));
         current_statement__ = 12;
         lp_accum__.add(stan::math::exponential_lpdf<propto__>(sigma, 1));
         current_statement__ = 15;
