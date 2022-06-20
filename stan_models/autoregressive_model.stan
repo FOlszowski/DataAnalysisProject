@@ -18,9 +18,5 @@ model {
   }
 } 
 generated quantities{ 
-  vector[N] log_lik;
-  for(i in 1:N){
-      log_lik[i] = normal_lpdf(y[i] | mu, sigma);
-  }
   real y_pred = normal_rng(alpha + beta * y[N], sigma); 
 } 

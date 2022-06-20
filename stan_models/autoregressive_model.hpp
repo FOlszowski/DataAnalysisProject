@@ -8,17 +8,13 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 20> locations_array__ = 
+static constexpr std::array<const char*, 15> locations_array__ = 
 {" (found before start of program)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 7, column 2 to column 13)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 8, column 2 to column 12)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 9, column 2 to column 10)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 10, column 2 to column 25)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 21, column 2 to column 20)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 23, column 6 to column 49)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 22, column 15 to line 24, column 3)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 22, column 2 to line 24, column 3)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 25, column 2 to column 55)",
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 21, column 2 to column 55)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 13, column 2 to column 29)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 14, column 2 to column 24)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 15, column 2 to column 25)",
@@ -27,8 +23,7 @@ static constexpr std::array<const char*, 20> locations_array__ =
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 16, column 2 to line 18, column 3)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 2, column 2 to column 20)",
  " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 3, column 10 to column 11)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 3, column 2 to column 15)",
- " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 21, column 9 to column 10)"};
+ " (in 'C:/Users/solar/Desktop/DataAnalysisProject/stan_models/autoregressive_model.stan', line 3, column 2 to column 15)"};
 
 
 
@@ -65,19 +60,19 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 16;
+      current_statement__ = 12;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 16;
+      current_statement__ = 12;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 16;
+      current_statement__ = 12;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 17;
+      current_statement__ = 13;
       stan::math::validate_non_negative_index("y", "N", N);
-      current_statement__ = 18;
+      current_statement__ = 14;
       context__.validate_dims("data initialization","y","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       y__ = 
@@ -87,21 +82,19 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
       
       {
         std::vector<local_scalar_t__> y_flat__;
-        current_statement__ = 18;
+        current_statement__ = 14;
         y_flat__ = context__.vals_r("y");
-        current_statement__ = 18;
+        current_statement__ = 14;
         pos__ = 1;
-        current_statement__ = 18;
+        current_statement__ = 14;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 18;
+          current_statement__ = 14;
           stan::model::assign(y, y_flat__[(pos__ - 1)],
             "assigning variable y", stan::model::index_uni(sym1__));
-          current_statement__ = 18;
+          current_statement__ = 14;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 19;
-      stan::math::validate_non_negative_index("log_lik", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -141,15 +134,15 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       {
-        current_statement__ = 10;
+        current_statement__ = 6;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 1600, 1500));
-        current_statement__ = 11;
+        current_statement__ = 7;
         lp_accum__.add(stan::math::lognormal_lpdf<propto__>(beta, 0, 1));
-        current_statement__ = 12;
+        current_statement__ = 8;
         lp_accum__.add(stan::math::exponential_lpdf<propto__>(sigma, 1));
-        current_statement__ = 15;
+        current_statement__ = 11;
         for (int n = 2; n <= N; ++n) {
-          current_statement__ = 13;
+          current_statement__ = 9;
           lp_accum__.add(
             stan::math::normal_lpdf<propto__>(
               stan::model::rvalue(y, "y", stan::model::index_uni(n)),
@@ -216,25 +209,13 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      Eigen::Matrix<double, -1, 1> log_lik =
-         Eigen::Matrix<double, -1, 1>::Constant(N,
-           std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 8;
-      for (int i = 1; i <= N; ++i) {
-        current_statement__ = 6;
-        stan::model::assign(log_lik,
-          stan::math::normal_lpdf<false>(
-            stan::model::rvalue(y, "y", stan::model::index_uni(i)), mu,
-            sigma), "assigning variable log_lik", stan::model::index_uni(i));
-      }
       double y_pred = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 9;
+      current_statement__ = 5;
       y_pred = stan::math::normal_rng(
                  (alpha +
                    (beta *
                      stan::model::rvalue(y, "y", stan::model::index_uni(N)))),
                  sigma, base_rng__);
-      out__.write(log_lik);
       out__.write(y_pred);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -276,7 +257,7 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
   inline void get_param_names(std::vector<std::string>& names__) const {
     
     names__ = std::vector<std::string>{"alpha", "beta", "mu", "sigma",
-      "log_lik", "y_pred"};
+      "y_pred"};
     
     } // get_param_names() 
     
@@ -284,8 +265,7 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
-      }, std::vector<size_t>{static_cast<size_t>(N)}, std::vector<size_t>{
-      }};
+      }, std::vector<size_t>{}};
     
     } // get_dims() 
     
@@ -304,11 +284,6 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
-        } 
-      }
       param_names__.emplace_back(std::string() + "y_pred");
     }
     
@@ -329,11 +304,6 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
-        } 
-      }
       param_names__.emplace_back(std::string() + "y_pred");
     }
     
@@ -341,13 +311,13 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_pred\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -363,8 +333,7 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = 
-  (N + 1);
+      const size_t num_gen_quantities = 1;
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -385,8 +354,7 @@ class autoregressive_model_model final : public model_base_crtp<autoregressive_m
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = 
-  (N + 1);
+      const size_t num_gen_quantities = 1;
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));
