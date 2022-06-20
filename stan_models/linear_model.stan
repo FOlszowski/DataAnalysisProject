@@ -7,7 +7,6 @@ data {
 parameters { 
     real alpha; 
     real beta; 
-    real mu;
     real <lower = 0> sigma; 
 } 
 model { 
